@@ -8,6 +8,7 @@ from .models import Product, Category
 from .forms import ProductForm
 
 
+
 @login_required
 def product_list(request):
     categories = Category.objects.all()
