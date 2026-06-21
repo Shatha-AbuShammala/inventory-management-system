@@ -1,0 +1,28 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand fw-bold" href="{% url 'dashboard:index' %}">
+            <img src="{% static 'img/logo.png' %}" alt="Smart Inventory Logo" height="32">
+            Smart Inventory
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard:index' %}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'inventory:product_list' %}">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'suppliers:supplier_list' %}">Suppliers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

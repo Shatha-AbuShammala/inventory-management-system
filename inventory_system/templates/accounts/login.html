@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login - Smart Inventory{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="card auth-card shadow-sm border-0">
+        <div class="card-body p-4">
+            <div class="text-center mb-4">
+                <img src="{% static 'img/logo.png' %}" alt="Smart Inventory Logo" style="width:64px;height:64px;object-fit:contain;">
+                <h6 class="mt-2 fw-bold">Smart Inventory</h6>
+            </div>
+
+            <h4 class="fw-bold">Login to Smart Inventory</h4>
+            <p class="text-muted small mb-4">Enter your credentials to access your account.</p>
+
+            <form method="POST" novalidate>
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label small fw-semibold">Email Address</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label small fw-semibold">Password</label>
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                        <div class="text-danger small mt-1">{{ form.password.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                    <label class="form-check-label small" for="rememberMe">Remember me</label>
+                </div>
+
+                <button type="submit" class="btn btn-dark w-100">Login</button>
+            </form>
+
+            <p class="text-center small mt-3 mb-0">
+                Don't have an account? <a href="{% url 'accounts:register' %}" class="fw-semibold">Register</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

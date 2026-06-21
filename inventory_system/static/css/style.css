@@ -1,0 +1,238 @@
+/* ===== Design Tokens ===== */
+:root {
+    --color-primary: #1E3A5F;
+    --color-primary-light: #2C4F7C;
+    --color-accent: #E8833A;
+    --color-success: #2D8A5B;
+    --color-danger: #D14343;
+    --color-bg: #F7F8FA;
+    --color-surface: #FFFFFF;
+    --color-text: #1F2937;
+    --color-text-muted: #6B7280;
+    --color-border: #E5E7EB;
+    --radius: 10px;
+    --shadow-soft: 0 2px 8px rgba(16, 24, 40, 0.06);
+    --shadow-medium: 0 4px 16px rgba(16, 24, 40, 0.10);
+}
+
+* {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    background-color: var(--color-primary) !important;
+    box-shadow: var(--shadow-soft);
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+}
+
+.navbar-brand {
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-brand i {
+    color: var(--color-accent);
+    font-size: 1.3rem;
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.78) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.navbar-nav .nav-link.active {
+    color: #fff !important;
+    background-color: var(--color-accent);
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== Cards ===== */
+.card {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--color-border);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-medium);
+    transition: box-shadow 0.2s ease;
+}
+
+/* ===== KPI Stat Cards ===== */
+.stat-card {
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    transition: transform 0.15s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.stat-icon.bg-products { background: #E8F0FE; color: var(--color-primary); }
+.stat-icon.bg-stock-in { background: #E5F5EC; color: var(--color-success); }
+.stat-icon.bg-stock-out { background: #FCEAEA; color: var(--color-danger); }
+.stat-icon.bg-suppliers { background: #FDF1E7; color: var(--color-accent); }
+
+/* ===== Buttons ===== */
+.btn-dark {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    font-weight: 500;
+}
+
+.btn-dark:hover {
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary-light);
+}
+
+.btn-accent {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+    font-weight: 500;
+}
+
+.btn-accent:hover {
+    background-color: #d4742e;
+    color: #fff;
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+/* ===== Tables ===== */
+.table thead th {
+    border-bottom: 2px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #F9FAFB;
+}
+
+/* ===== Badges ===== */
+.badge {
+    font-weight: 500;
+    padding: 0.45em 0.8em;
+    border-radius: 6px;
+}
+
+/* ===== Auth Pages ===== */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #142943 100%);
+    padding: 1.5rem;
+}
+
+.auth-card {
+    max-width: 420px;
+    width: 100%;
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.auth-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    font-size: 1.4rem;
+    margin: 0 auto;
+}
+
+/* ===== Forms ===== */
+.form-control, .form-select {
+    border-radius: 8px;
+    border-color: var(--color-border);
+    padding: 0.55rem 0.85rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--color-primary-light);
+    box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
+}
+
+.form-label {
+    color: var(--color-text);
+}
+
+/* ===== Low Stock Alert Badge ===== */
+.badge-low-stock {
+    background-color: #FDF1E7;
+    color: var(--color-accent);
+    border: 1px solid #F5D5B8;
+}
+
+/* ===== Modals ===== */
+.modal-content {
+    border-radius: var(--radius);
+    border: none;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* ===== Pagination ===== */
+.page-link {
+    color: var(--color-primary);
+    border-color: var(--color-border);
+}
+
+.page-item.active .page-link {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
