@@ -1,0 +1,44 @@
+<form id="productForm" novalidate>
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label small fw-semibold">Product Name</label>
+        {{ form.name }}
+        {% if form.name.errors %}<div class="text-danger small mt-1">{{ form.name.errors.0 }}</div>{% endif %}
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label class="form-label small fw-semibold">Category</label>
+            {{ form.category }}
+            {% if form.category.errors %}<div class="text-danger small mt-1">{{ form.category.errors.0 }}</div>{% endif %}
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label small fw-semibold">Supplier</label>
+            {{ form.supplier }}
+            {% if form.supplier.errors %}<div class="text-danger small mt-1">{{ form.supplier.errors.0 }}</div>{% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label class="form-label small fw-semibold">Quantity</label>
+            {{ form.quantity }}
+            {% if form.quantity.errors %}<div class="text-danger small mt-1">{{ form.quantity.errors.0 }}</div>{% endif %}
+        </div>
+        <div class="col-md-4 mb-3">
+            <label class="form-label small fw-semibold">Price ($)</label>
+            {{ form.price }}
+            {% if form.price.errors %}<div class="text-danger small mt-1">{{ form.price.errors.0 }}</div>{% endif %}
+        </div>
+        <div class="col-md-4 mb-3">
+            <label class="form-label small fw-semibold">Reorder Level</label>
+            {{ form.reorder_level }}
+            {% if form.reorder_level.errors %}<div class="text-danger small mt-1">{{ form.reorder_level.errors.0 }}</div>{% endif %}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-dark w-100" id="productSubmitBtn">
+        {% if product %}Update Product{% else %}Add Product{% endif %}
+    </button>
+</form>
