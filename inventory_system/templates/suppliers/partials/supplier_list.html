@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Suppliers - Smart Inventory{% endblock %}
+
+{% block content %}
+<div class="p-4">
+
+    <div class="mb-4">
+        <h3 class="fw-bold mb-0">Suppliers</h3>
+        <p class="text-muted">View and manage all registered warehouse suppliers.</p>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+
+            <div class="row g-2 mb-3">
+                <div class="col-md-6">
+                    <input type="text" id="supplierSearchInput" class="form-control" placeholder="Search suppliers...">
+                </div>
+                <div class="col-md-3">
+                    <select id="statusFilter" class="form-select">
+                        <option value="">All Status</option>
+                        <option value="ACTIVE">Active</option>
+                        <option value="INACTIVE">Inactive</option>
+                    </select>
+                </div>
+                <div class="col-md-3 text-end">
+                    <button class="btn btn-dark w-100" id="btnAddSupplier">
+                        <i class="bi bi-plus-lg"></i> Add New Supplier
+                    </button>
+                </div>
+            </div>
+
+            <div id="supplierTableContainer">
+                <div class="text-center text-muted py-4">Loading suppliers...</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Add/Edit Supplier -->
+<div class="modal fade" id="supplierModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="supplierModalTitle">Add New Supplier</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="supplierModalBody"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Confirm Delete -->
+<div class="modal fade" id="deleteSupplierModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete <strong id="deleteSupplierName"></strong>?
+                This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteSupplierBtn">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/suppliers.js' %}"></script>
+{% endblock %}

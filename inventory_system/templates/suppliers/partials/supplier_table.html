@@ -1,0 +1,72 @@
+<table class="table table-hover align-middle mb-0">
+    <thead>
+        <tr class="text-muted small text-uppercase">
+            <th>Supplier Name</th>
+            <th>Contact Person</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Products Supplied</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for supplier in page_obj %}
+        <tr>
+            <td class="fw-semibold">{{ supplier.name }}</td>
+            <td>{{ supplier.contact_person }}</td>
+            <td>{{ supplier.phone }}</td>
+            <td>{{ supplier.email }}</td>
+            <td>
+                {% with products=supplier.products.all %}
+                    {% if products %}
+                        {% for p in products|slice:":3" %}{{ p.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                        {% if products.count > 3 %}...{% endif %}
+                    {% else %}
+                        <span class="text-muted">—</span>
+                    {% endif %}
+                {% endwith %}
+            </td>
+            <td>
+                {% if supplier.status == 'ACTIVE' %}
+                    <span class="badge bg-dark">Active</span>
+                {% else %}
+                    <span class="badge bg-light text-dark">Inactive</span>
+                {% endif %}
+            </td>
+            <td>
+                <button class="btn btn-sm btn-outline-dark btn-edit-supplier" data-id="{{ supplier.id }}">Edit</button>
+                <button class="btn btn-sm btn-outline-danger btn-delete-supplier" data-id="{{ supplier.id }}" data-name="{{ supplier.name }}">Delete</button>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7" class="text-center text-muted py-4">No suppliers found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between align-items-center mt-3">
+    <span class="text-muted small">
+        Showing {{ page_obj.start_index }}-{{ page_obj.end_index }} of {{ paginator.count }} suppliers
+    </span>
+
+    <nav>
+        <ul class="pagination pagination-sm mb-0">
+            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+               <a class="page-link page-link-ajax-supplier" href="#" data-page="{% if page_obj.has_previous %}{{ page_obj.previous_page_number }}{% else %}1{% endif %}">&laquo;</a>
+            </li>
+
+            {% for num in paginator.page_range %}
+                <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                    <a class="page-link page-link-ajax-supplier" href="#" data-page="{{ num }}">{{ num }}</a>
+                </li>
+            {% endfor %}
+
+            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                <a class="page-link page-link-ajax-supplier" href="#" data-page="{% if page_obj.has_next %}{{ page_obj.next_page_number }}{% else %}{{ paginator.num_pages }}{% endif %}">&raquo;</a>
+            </li>
+        </ul>
+    </nav>
+</div>
